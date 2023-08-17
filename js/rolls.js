@@ -84,7 +84,7 @@ export default class Sketch {
       side: THREE.DoubleSide,
       uniforms: {
         time: { type: "f", value: 0 },
-        progress: { type: "f", value: 0 },
+        progress: { type: "f", value: 1 },
         angle: { type: "f", value: 0 },
         texture1: { type: "t", value: null },
         texture2: { type: "t", value: null },

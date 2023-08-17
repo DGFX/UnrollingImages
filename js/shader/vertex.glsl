@@ -36,6 +36,8 @@ void main() {
   vUv = uv;
   float pi = 3.14159265359;
 
+  float progress = 1.0 - progress;
+
 
   float finalAngle = angle - 0.*0.3*sin(progress*6.);
 

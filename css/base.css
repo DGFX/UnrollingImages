@@ -122,7 +122,9 @@ a:focus {
 }
 
 .js-image {
-	max-width: 100%;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 	display: block;
 }
 
@@ -180,17 +182,50 @@ canvas {
 	position: relative;
 }
 
+.test__wrap {
+	position: relative;
+	width: 450px;
+	height: 600px;
+}
+
 .intro__background-image {
 	margin-right: 20%;
 	position: relative;
 }
 
-.intro__background-image img {
-	width: 100%;
-	display: block;
+.intro__background-image > img {
+	object-fit: cover;
 }
 
-.intro__foreground-image {
+.test__background-image {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.test__background-image img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: cover;
+}
+
+.test__background-image img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: cover;
+}
+
+.test__foreground-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.test-image {
 	position: absolute;
 	right: 0;
 	width: 60%;
@@ -334,8 +369,9 @@ canvas {
 }
 
 .last__image {
-	max-width: 480px;
+	max-width: 180px;
 	margin: 0 auto;
+	cursor: grab;
 }
 
 .last img {

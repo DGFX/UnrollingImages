@@ -47,9 +47,11 @@ class Item {
     this.shouldRollBack = false;
     this.shouldUnRoll = false;
     this.positions = [];
+    this.progress = 0;
 
     // set the initial values
     this.getSize();
+    this.addEvents(); 
     this.mesh = scene.createMesh({
       width: this.width,
       height: this.height,
@@ -120,6 +122,38 @@ class Item {
     this.height = bounds.height;
     this.left = bounds.left;
   }
+  
+  addEvents() {
+    this.DOM.el.addEventListener("mouseenter", el => {
+      console.log("mouse in")
+      
+      gsap.to(this.mesh.material.uniforms.progress, {
+        duration: 1,
+        value: 0.4,
+        ease: "power3.inOut",
+        onUpdate: () => {
+          this.scroll.shouldRender = true;
+        }
+      });
+      
+    })
+    
+    this.DOM.el.addEventListener("mouseleave", el => {
+      console.log("mouse out")
+      gsap.to(this.mesh.material.uniforms.progress, {
+        duration: 1.3,
+        value: 0.15,
+        ease: "power3.inOut",
+        onUpdate: () => {
+          this.scroll.shouldRender = true;
+        },
+        onComplete: () => {
+          this.isBeingAnimatedNow = false;
+        }
+      });
+    })
+  }
+
   resize() {
     // on resize rest sizes and update the translation value
     this.getSize();
@@ -133,7 +167,7 @@ class Item {
     this.mesh.position.y =
       currentScroll + winsize.height / 2 - this.insideRealTop - this.height / 2;
     this.mesh.position.x = 0 - winsize.width / 2 + this.left + this.width / 2;
-    if (this.shouldUnRoll && !this.animated) {
+    if (!this.animated) {
       this.animated = true;
       this.isBeingAnimatedNow = true;
       this.shouldUnRoll = false;
@@ -304,6 +338,7 @@ class SmoothScroll {
   initEvents() {
     // on resize reset the body's height
     window.addEventListener("resize", () => this.setSize());
+    
   }
   render() {
     // update the current and interpolated values
