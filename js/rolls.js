@@ -48,7 +48,7 @@ export default class Sketch {
     let that = this;
     this.settings = {
       progress: 0,
-      angle: 0.25
+      angle: (45 * Math.PI) / 180
     };
     // this.gui = new dat.GUI();
     // // this.gui.add(this.settings, "progress", -1, 2, 0.01);
@@ -121,7 +121,10 @@ export default class Sketch {
     material.uniforms.resolution.value.z = a1;
     material.uniforms.resolution.value.w = a2;
     material.uniforms.progress.value = 0;
-    material.uniforms.angle.value = 0.3;
+    
+    // material.uniforms.angle.value = 0.3;
+    material.uniforms.angle.value = (45 * Math.PI) / 180;
+
 
     material.uniforms.texture1.value = texture;
     material.uniforms.texture1.value.needsUpdate = true;

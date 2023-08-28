@@ -173,7 +173,7 @@ class Item {
       this.shouldUnRoll = false;
       gsap.to(this.mesh.material.uniforms.progress, {
         duration: 1.7,
-        value: 1,
+        value: 0.15,
         ease: "power2.out",
         onUpdate: () => {
           this.scroll.shouldRender = true;
@@ -244,37 +244,6 @@ class SmoothScroll {
     this.buttons();
     // start the render loop
     requestAnimationFrame(() => this.render());
-  }
-
-  buttons() {
-    let that = this;
-    let buttons = [...document.querySelectorAll(".js-change")];
-
-    buttons.forEach(b => {
-      let angle = b.getAttribute("data-angle");
-      let radians = (angle * Math.PI) / 180;
-
-      b.addEventListener("click", () => {
-        scene.settings.angle = radians;
-
-        scene.scene.children.forEach(mesh => {
-          gsap.fromTo(
-            mesh.material.uniforms.progress,
-            {
-              value: 0
-            },
-            {
-              duration: 2,
-              value: 1,
-              ease: "power2.out",
-              onUpdate: () => {
-                this.shouldRender = true;
-              }
-            }
-          );
-        });
-      });
-    });
   }
 
   update() {
